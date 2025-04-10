@@ -1,0 +1,155 @@
+/**
+ * Optimized critical CSS - Only includes what's needed
+ * Utilizes modern CSS features and best practices
+ */
+
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Custom properties with fallbacks */
+:root {
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+  --body-bg: #f8f9fa;
+  --body-color: #333;
+  --font-main: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  --content-width: min(1200px, 95vw);
+  --transition-speed: 0.3s;
+}
+
+/* Core element styles with performance optimizations */
+html {
+  font-size: clamp(14px, 1vw, 18px);
+  line-height: 1.5;
+  text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* Use composited animations only (transform, opacity) */
+body {
+  font-family: var(--font-main);
+  color: var(--body-color);
+  background-color: var(--body-bg);
+  min-height: 100%;
+  overflow-x: hidden;
+  min-width: 320px;
+  will-change: auto;
+  contain: content;
+}
+
+/* Only include the most critical styles */
+#root {
+  isolation: isolate;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+/* Pre-connect to critical origins */
+:root::before {
+  content: "";
+  display: none;
+}
+
+/* Optimize image rendering */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  font-style: italic; /* Fallback text styling */
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
+}
+
+/* Core typography */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--dark-color);
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Critical component styles */
+.loading-fallback {
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  color: var(--secondary-color);
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 123, 255, 0.2);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 0.6s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-fallback {
+  padding: 1.5rem;
+  margin: 1rem 0;
+  background-color: #fff8f8;
+  border: 1px solid #f5c6cb;
+  border-radius: 0.25rem;
+}
+
+/* Accessibility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

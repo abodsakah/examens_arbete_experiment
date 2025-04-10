@@ -1,0 +1,512 @@
+{
+  "info": {
+    "_postman_id": "eb8a6e75-f9dc-4d3f-a7e7-20e5d5a3b8b0",
+    "name": "WebShop API",
+    "description": "Postman collection for testing the WebShop API endpoints",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Get All Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "disabled": true
+                },
+                {
+                  "key": "offset",
+                  "value": "0",
+                  "disabled": true
+                },
+                {
+                  "key": "sortBy",
+                  "value": "price",
+                  "disabled": true
+                },
+                {
+                  "key": "sortDirection",
+                  "value": "asc",
+                  "disabled": true
+                },
+                {
+                  "key": "category",
+                  "value": "electronics",
+                  "disabled": true
+                },
+                {
+                  "key": "minPrice",
+                  "value": "50",
+                  "disabled": true
+                },
+                {
+                  "key": "maxPrice",
+                  "value": "200",
+                  "disabled": true
+                },
+                {
+                  "key": "featured",
+                  "value": "true",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get all products with optional filtering, sorting, and pagination parameters."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "1"
+              ]
+            },
+            "description": "Get a specific product by its ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Featured Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/featured",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "featured"
+              ],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "5",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get featured products."
+          },
+          "response": []
+        },
+        {
+          "name": "Search Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/search?q=keyboard",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "keyboard"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Search for products by keyword."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Product Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "categories"
+              ]
+            },
+            "description": "Get all available product categories."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for managing products."
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderData\": {\n    \"customer_name\": \"John Doe\",\n    \"customer_email\": \"john.doe@example.com\",\n    \"customer_address\": \"123 Main St, City, Country\",\n    \"total_amount\": 299.97\n  },\n  \"items\": [\n    {\n      \"product_id\": 1,\n      \"quantity\": 1\n    },\n    {\n      \"product_id\": 2,\n      \"quantity\": 2\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders"
+              ]
+            },
+            "description": "Create a new order."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "1"
+              ]
+            },
+            "description": "Get a specific order by its ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order Tracking",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/1/tracking",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "1",
+                "tracking"
+              ]
+            },
+            "description": "Get tracking information for a specific order."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Order by Tracking Number",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/orders/tracking/TRK-12345678-9012",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "orders",
+                "tracking",
+                "TRK-12345678-9012"
+              ]
+            },
+            "description": "Get an order by its tracking number."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for managing orders."
+    },
+    {
+      "name": "Performance Features",
+      "item": [
+        {
+          "name": "Get Product Recommendations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/1/recommendations?size=medium",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "1",
+                "recommendations"
+              ],
+              "query": [
+                {
+                  "key": "size",
+                  "value": "medium",
+                  "description": "Can be small, medium, or large"
+                },
+                {
+                  "key": "delay",
+                  "value": "500",
+                  "description": "Simulate server delay in ms",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get product recommendations with adjustable response size."
+          },
+          "response": []
+        },
+        {
+          "name": "Get High Resolution Images",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/1/high-res-images",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "1",
+                "high-res-images"
+              ]
+            },
+            "description": "Get high resolution image URLs for a product."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Detailed Product Report",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/products/1/detailed-report",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "products",
+                "1",
+                "detailed-report"
+              ]
+            },
+            "description": "Get a detailed product report with a large, complex data structure."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for testing frontend performance."
+    },
+    {
+      "name": "Benchmark",
+      "item": [
+        {
+          "name": "Submit Benchmark Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"pageUrl\": \"/products\",\n  \"clientId\": \"browser-uuid\",\n  \"metrics\": {\n    \"ttfb\": 120,\n    \"fcp\": 350,\n    \"lcp\": 980,\n    \"fid\": 27,\n    \"cls\": 0.05,\n    \"load\": 1250\n  },\n  \"events\": [\n    {\n      \"type\": \"click\",\n      \"timestamp\": 1715015483123,\n      \"target\": \"product-card-1\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/benchmark",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "benchmark"
+              ]
+            },
+            "description": "Submit performance benchmark data from the frontend."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Benchmark Data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/benchmark",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "benchmark"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "browser-uuid",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Get all benchmark data, optionally filtered by client ID."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Benchmark Stats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/benchmark/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "benchmark",
+                "stats"
+              ]
+            },
+            "description": "Get aggregated benchmark statistics."
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for performance benchmarking."
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "health"
+          ]
+        },
+        "description": "Check the health status of the API."
+      },
+      "response": []
+    },
+    {
+      "name": "API Root",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1"
+          ]
+        },
+        "description": "Get API information and available endpoints."
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}

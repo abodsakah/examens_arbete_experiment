@@ -1,0 +1,102 @@
+{
+  "name": "frontend-optimized",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "analyze": "vite build --mode analyze",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "serve": "vite preview --port 4173 --host",
+    "preinstall": "npx only-allow pnpm",
+    "prepare": "npx husky install"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
+    "axios": "^1.8.4",
+    "canvas-confetti": "^1.6.0",
+    "chart.js": "^4.4.1",
+    "formik": "^2.4.6",
+    "jquery": "^3.7.1",
+    "lodash-es": "^4.17.21",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-error-boundary": "^4.0.13",
+    "react-intersection-observer": "^9.8.0",
+    "react-lazy-load-image-component": "^1.6.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.5.0",
+    "react-slick": "^0.30.2",
+    "react-toastify": "^11.0.5",
+    "redux": "^5.0.1",
+    "web-vitals": "^3.5.2",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^8.56.0",
+    "@types/canvas-confetti": "^1.6.4",
+    "@types/jquery": "^3.5.29",
+    "@types/lodash-es": "^4.17.12",
+    "@types/node": "^20.11.28",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@types/react-lazy-load-image-component": "^1.6.3",
+    "@types/react-slick": "^0.23.13",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
+    "@vitejs/plugin-legacy": "^5.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.18",
+    "critters": "^0.0.22",
+    "cssnano": "^6.0.5",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.34.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8.4.35",
+    "postcss-preset-env": "^9.4.0",
+    "prettier": "^3.2.5",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "sharp": "^0.33.2",
+    "terser": "^5.28.1",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^5.0.0",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-imagemin": "^0.5.0",
+    "vite-plugin-pwa": "^0.19.8"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not IE 11"
+  ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "cssnano": {
+        "preset": "default"
+      }
+    }
+  },
+  "resolutions": {
+    "sharp": "^0.33.2"
+  }
+}
