@@ -6,25 +6,18 @@ import { StrictMode, Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorBoundary } from "react-error-boundary";
 import { ToastContainer } from "react-toastify";
-// @ts-ignore
-import { registerSW } from "virtual:pwa-register";
 import "react-toastify/dist/ReactToastify.css"; // CSS
 import "./index.css"; // Our optimized CSS
 import App from "./App";
 import { LoadingFallback, ErrorFallback } from "./components/Fallbacks";
 
-// Update service worker on new version
-const updateSW = registerSW({
-  onNeedRefresh() {
-    // Show a UI notification that there's an update
-    if (confirm("New content available. Reload to update?")) {
-      updateSW(true);
-    }
-  },
-  onOfflineReady() {
-    console.log("App ready to work offline");
-  },
-});
+// Temporarily disable PWA for development
+// This helps avoid virtual:pwa-register issues
+const updateSW = (() => {
+  // Mock PWA registration
+  console.log("PWA functionality disabled for development");
+  return () => {};
+})();
 
 // Performance metrics
 if (process.env.NODE_ENV === 'development') {

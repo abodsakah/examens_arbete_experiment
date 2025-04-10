@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { RootState, updateQuantity, removeFromCart, clearCart } from "../store";
 import { fetchProductDetails } from "../services/api";
 import { Product } from "../types";
+import ProductImage from "../components/ProductImage";
 
 const CartPage: React.FC = () => {
 	const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const CartPage: React.FC = () => {
 
 	// More efficient state management
 	const [products, setProducts] = useState<Record<number, Product>>({});
-	const [loading, setLoading] = useState<boolean>(true);
+	const [, setLoading] = useState<boolean>(true);
 	const [couponCode, setCouponCode] = useState<string>("");
 	const [discount, setDiscount] = useState<number>(0);
 	const [error, setError] = useState<string | null>(null);
@@ -124,7 +125,7 @@ const CartPage: React.FC = () => {
 											<td className='product-cell' data-label='Product'>
 												{product ? (
 													<div className='cart-product'>
-														<img
+														<ProductImage
 															src={product.image_url}
 															alt={product.name}
 															className='cart-product-image'

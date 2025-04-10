@@ -16,8 +16,8 @@ export default defineConfig({
     legacy({
       targets: ['defaults', 'not IE 11']
     }),
-    // Add PWA support
-    VitePWA({
+    // Add PWA support (disabled for development to fix compatibility issues)
+    process.env.NODE_ENV === 'production' ? VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
@@ -56,7 +56,7 @@ export default defineConfig({
           }
         ]
       }
-    }),
+    }) : null,
     // Image optimization disabled due to ESM compatibility issues
     // viteImagemin({
     //   gifsicle: {

@@ -12,7 +12,11 @@ import {
 	setCurrentPage,
 	addToCart
 } from "../store";
-import { fetchProducts, fetchCategories, ProductQueryParams } from "../services/api";
+import {
+	fetchProducts,
+	fetchCategories,
+	ProductQueryParams
+} from "../services/api";
 import { Product } from "../types";
 import ProductImage from "../components/ProductImage";
 
@@ -135,8 +139,6 @@ const ProductsPage: React.FC = () => {
 				price
 			})
 		);
-
-		alert(`Added ${name} to cart!`);
 	};
 
 	// Calculate total pages inefficiently

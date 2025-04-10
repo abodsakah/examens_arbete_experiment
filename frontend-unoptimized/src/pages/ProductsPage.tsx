@@ -135,8 +135,6 @@ const ProductsPage: React.FC = () => {
 				price
 			})
 		);
-
-		alert(`Added ${name} to cart!`);
 	};
 
 	// Calculate total pages inefficiently

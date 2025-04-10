@@ -27,12 +27,11 @@ app.use(express.json({ limit: '1mb' })); // Parse JSON request bodies with size 
 app.use(express.urlencoded({ extended: true, limit: '1mb' })); // Parse URL-encoded request bodies
 
 // Configure CORS
-app.use(cors({
-  origin: config.cors.origin,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Cache-Control', 'Pragma', 'Expires'],
-  exposedHeaders: ['Cache-Control', 'Content-Length', 'Content-Type']
-}));
+app.use(
+  cors({
+    origin: '*',
+  })
+);
 
 // Setup static file serving
 setupStaticFiles(app);
@@ -51,7 +50,7 @@ app.get('/health', (req: Request, res: Response) => {
   res.status(200).json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime()
+    uptime: process.uptime(),
   });
 });
 
@@ -63,8 +62,8 @@ app.get('/api/v1', (req: Request, res: Response) => {
     endpoints: {
       products: '/api/v1/products',
       orders: '/api/v1/orders',
-      benchmark: '/api/v1/benchmark'
-    }
+      benchmark: '/api/v1/benchmark',
+    },
   });
 });
 
@@ -79,16 +78,16 @@ const startServer = async () => {
   try {
     // Setup database if it doesn't exist
     await setupDatabase();
-    
+
     // Test database connection
     await testConnection();
-    
+
     // Initialize database tables and seed data
     await initDatabase();
-    
+
     // Start the order tracking simulation
     initTrackingSimulation();
-    
+
     // Start the server
     app.listen(config.server.port, () => {
       logger.info(`Server running in ${config.server.nodeEnv} mode on port ${config.server.port}`);

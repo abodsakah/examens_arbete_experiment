@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import Slider from "react-slick";
 import { motion } from "framer-motion";
 import { fetchFeaturedProductsSuccess } from "../store";
 import { fetchFeaturedProducts } from "../services/api";
 import ProductImage from "../components/ProductImage";
+import SliderWrapper from "../components/SliderWrapper";
 import { RootState, Banner } from "../types";
 
 const HomePage: React.FC = () => {
@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
 	const featuredProducts = useSelector(
 		(state: RootState) => state.products.featuredProducts
 	);
-	
+
 	// Define a constant for animation to avoid state
 	const animationCounter = 0;
 
@@ -100,7 +100,7 @@ const HomePage: React.FC = () => {
 		<div className='home-page'>
 			{/* Banner slider */}
 			<div className='banner-slider'>
-				<Slider {...sliderSettings}>
+				<SliderWrapper settings={sliderSettings}>
 					{banners.map((banner) => (
 						<div key={banner.id} className='banner-slide'>
 							<div
@@ -117,7 +117,7 @@ const HomePage: React.FC = () => {
 							</div>
 						</div>
 					))}
-				</Slider>
+				</SliderWrapper>
 			</div>
 
 			{/* Featured Products */}
@@ -127,7 +127,6 @@ const HomePage: React.FC = () => {
 					{featuredProducts.map((product) => (
 						<motion.div
 							key={product.id}
-							className='product-card'
 							initial={{ opacity: 0, y: 20 }}
 							animate={{
 								opacity: 1,

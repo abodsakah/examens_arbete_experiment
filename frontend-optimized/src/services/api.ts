@@ -3,7 +3,7 @@ import { Order } from "../store";
 
 // Inefficiently configured API client
 const api = axios.create({
-	baseURL: "http://localhost:3000/api/v1",
+	baseURL: "http://157.180.66.56:3000/api/v1",
 	timeout: 30000, // Unnecessarily long timeout
 	headers: {
 		"Content-Type": "application/json",
@@ -17,12 +17,12 @@ const api = axios.create({
 
 // Inefficient product fetching with no batching or pagination handling on frontend
 export interface ProductQueryParams {
-  category?: string;
-  search?: string;
-  sort?: string;
-  page?: number;
-  limit?: number;
-  [key: string]: string | number | undefined;
+	category?: string;
+	search?: string;
+	sort?: string;
+	page?: number;
+	limit?: number;
+	[key: string]: string | number | undefined;
 }
 
 export const fetchProducts = async (params: ProductQueryParams = {}) => {
@@ -83,7 +83,15 @@ export const fetchDetailedProductReport = async (productId: number) => {
 
 // Create order with no validation
 export const createOrder = async (orderData: Order) => {
-	const response = await api.post("/orders", orderData);
+	const response = await api.post("/orders", {
+		orderData: {
+			customer_name: orderData.customer_name,
+			customer_email: orderData.customer_email,
+			customer_address: orderData.customer_address,
+			total_amount: orderData.total_amount
+		},
+		items: orderData.items
+	});
 	return response.data.data;
 };
 
@@ -107,14 +115,14 @@ export const trackOrderByNumber = async (trackingNumber: string) => {
 
 // Submit performance benchmark data
 export interface BenchmarkData {
-  pageLoadTime: number;
-  firstContentfulPaint: number;
-  domInteractive: number;
-  largestContentfulPaint: number;
-  networkRequests: number;
-  resourceSize: number;
-  userAgent: string;
-  [key: string]: string | number;
+	pageLoadTime: number;
+	firstContentfulPaint: number;
+	domInteractive: number;
+	largestContentfulPaint: number;
+	networkRequests: number;
+	resourceSize: number;
+	userAgent: string;
+	[key: string]: string | number;
 }
 
 export const submitBenchmarkData = async (data: BenchmarkData) => {

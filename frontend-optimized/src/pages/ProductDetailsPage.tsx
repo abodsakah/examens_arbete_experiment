@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import Slider from "react-slick";
 import { motion } from "framer-motion";
 import { Chart } from "chart.js/auto";
+import SliderWrapper from "../components/SliderWrapper";
 import {
 	fetchProductDetails,
 	fetchProductRecommendations,
@@ -11,7 +11,13 @@ import {
 	fetchDetailedProductReport
 } from "../services/api";
 import { addToCart, addNotification } from "../store";
-import { Product, ProductReport, ProductReview, ShippingOption, WarrantyOption } from "../types";
+import {
+	Product,
+	ProductReport,
+	ProductReview,
+	ShippingOption,
+	WarrantyOption
+} from "../types";
 
 const ProductDetailsPage: React.FC = () => {
 	const { id } = useParams<{ id: string }>();
@@ -23,8 +29,13 @@ const ProductDetailsPage: React.FC = () => {
 	const [error, setError] = useState<string | null>(null);
 	const [quantity, setQuantity] = useState<number>(1);
 	const [recommendations, setRecommendations] = useState<Product[]>([]);
-	const [highResImages, setHighResImages] = useState<{high: string, ultra: string} | null>(null);
-	const [detailedReport, setDetailedReport] = useState<ProductReport | null>(null);
+	const [highResImages, setHighResImages] = useState<{
+		high: string;
+		ultra: string;
+	} | null>(null);
+	const [detailedReport, setDetailedReport] = useState<ProductReport | null>(
+		null
+	);
 	const [activeTab, setActiveTab] = useState<string>("description");
 	const [selectedImage, setSelectedImage] = useState<string>("");
 	const chartRef = useRef<Chart | null>(null);
@@ -43,16 +54,18 @@ const ProductDetailsPage: React.FC = () => {
 				// Get product details first
 				const productData = await fetchProductDetails(productId);
 				setProduct(productData);
-				setSelectedImage("http://localhost:3000" + productData.image_url);
+				setSelectedImage("http://157.180.66.56:3000" + productData.image_url);
 				setLoading(false);
-				
+
 				// Then load additional data in parallel
-				const [recommendationsData, imagesData, reportData] = await Promise.all([
-					fetchProductRecommendations(productId, "small"),
-					fetchHighResolutionImages(productId),
-					fetchDetailedProductReport(productId)
-				]);
-				
+				const [recommendationsData, imagesData, reportData] = await Promise.all(
+					[
+						fetchProductRecommendations(productId, "small"),
+						fetchHighResolutionImages(productId),
+						fetchDetailedProductReport(productId)
+					]
+				);
+
 				setRecommendations(recommendationsData);
 				setHighResImages(imagesData);
 				setDetailedReport(reportData);
@@ -87,11 +100,11 @@ const ProductDetailsPage: React.FC = () => {
 				chartRef.current = new Chart(ctx, {
 					type: "line",
 					data: {
-						labels: detailedReport.salesTrend.map(item => item.date),
+						labels: detailedReport.salesTrend.map((item) => item.date),
 						datasets: [
 							{
 								label: "Sales Trend",
-								data: detailedReport.salesTrend.map(item => item.quantity),
+								data: detailedReport.salesTrend.map((item) => item.quantity),
 								borderColor: "rgb(75, 192, 192)",
 								backgroundColor: "rgba(75, 192, 192, 0.2)",
 								tension: 0.1
@@ -227,12 +240,15 @@ const ProductDetailsPage: React.FC = () => {
 						<div className='image-options'>
 							<button
 								className={
-									selectedImage === "http://localhost:3000" + product.image_url
+									selectedImage ===
+									"http://157.180.66.56:3000" + product.image_url
 										? "active"
 										: ""
 								}
 								onClick={() =>
-									setSelectedImage("http://localhost:3000" + product.image_url)
+									setSelectedImage(
+										"http://157.180.66.56:3000" + product.image_url
+									)
 								}
 							>
 								Standard
@@ -510,14 +526,14 @@ const ProductDetailsPage: React.FC = () => {
 				<section className='recommendations-section'>
 					<h2>You May Also Like</h2>
 					<div className='recommendations-slider'>
-						<Slider {...sliderSettings}>
+						<SliderWrapper settings={sliderSettings}>
 							{recommendations.map((item) => (
 								<div key={item.id} className='recommendation-slide'>
 									<div className='recommendation-card'>
 										<Link to={`/products/${item.id}`}>
 											<div className='recommendation-image'>
 												<img
-													src={"http://localhost:3000" + item.image_url}
+													src={"http://157.180.66.56:3000" + item.image_url}
 													alt={item.name}
 												/>
 											</div>
@@ -531,7 +547,7 @@ const ProductDetailsPage: React.FC = () => {
 									</div>
 								</div>
 							))}
-						</Slider>
+						</SliderWrapper>
 					</div>
 				</section>
 			)}

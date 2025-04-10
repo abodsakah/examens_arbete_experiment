@@ -46,7 +46,7 @@ const ProductDetailsPage: React.FC = () => {
 				// Get product details
 				const productData = await fetchProductDetails(productId);
 				setProduct(productData);
-				setSelectedImage("http://localhost:3000" + productData.image_url);
+				setSelectedImage("http://157.180.66.56:3000" + productData.image_url);
 
 				// Inefficiently load large recommendations dataset
 				const recommendationsData = await fetchProductRecommendations(
@@ -245,12 +245,15 @@ const ProductDetailsPage: React.FC = () => {
 						<div className='image-options'>
 							<button
 								className={
-									selectedImage === "http://localhost:3000" + product.image_url
+									selectedImage ===
+									"http://157.180.66.56:3000" + product.image_url
 										? "active"
 										: ""
 								}
 								onClick={() =>
-									setSelectedImage("http://localhost:3000" + product.image_url)
+									setSelectedImage(
+										"http://157.180.66.56:3000" + product.image_url
+									)
 								}
 							>
 								Standard
@@ -535,7 +538,7 @@ const ProductDetailsPage: React.FC = () => {
 										<Link to={`/products/${item.id}`}>
 											<div className='recommendation-image'>
 												<img
-													src={"http://localhost:3000" + item.image_url}
+													src={"http://157.180.66.56:3000" + item.image_url}
 													alt={item.name}
 												/>
 											</div>

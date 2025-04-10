@@ -1,115 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebShop - Unoptimized</title>
-    <!-- Blocking CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-datepicker@4.8.0/dist/react-datepicker.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/react-toastify@9.1.1/dist/ReactToastify.min.css" />
-    
-    <!-- Blocking JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    
-    <!-- Inline blocking styles -->
-    <style>
-      /* Large, unnecessary CSS rules */
-      body {
-        font-family: 'Arial', sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #f8f9fa;
-      }
-      
-      /* Unnecessarily specific selectors */
-      body div.container div.row div.col-md-12 h1.page-title {
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #343a40;
-        margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-      }
-      
-      /* Unused CSS rules that add to the payload */
-      .unused-class-1 { color: red; background-color: blue; transform: rotate(45deg); }
-      .unused-class-2 { animation: spin 2s linear infinite; border-radius: 50%; }
-      .unused-class-3 { box-shadow: 0 0 10px rgba(0,0,0,0.5); text-decoration: underline; }
-      .unused-class-4 { display: flex; flex-direction: column; align-items: center; }
-      .unused-class-5 { position: relative; top: 10px; left: 20px; z-index: 100; }
-      
-      /* Unnecessary @keyframes */
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
-      @keyframes fade {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-      }
-      @keyframes slide {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(0); }
-      }
-    </style>
-    
-    <!-- Inline blocking script -->
-    <script>
-      // Unnecessary JavaScript
-      console.log('Page loaded');
-      
-      // Global variables (bad practice)
-      var globalCounter = 0;
-      
-      // Function that blocks the main thread
-      function blockingOperation() {
-        console.log('Running blocking operation');
-        const start = Date.now();
-        while (Date.now() - start < 100) {
-          // Block for 100ms
-          globalCounter++;
-        }
-        return globalCounter;
-      }
-      
-      // Run on page load
-      blockingOperation();
-      
-      // Add unnecessary event listeners
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('DOM fully loaded');
-        blockingOperation();
-      });
-      
-      window.addEventListener('load', function() {
-        console.log('Window loaded');
-        setTimeout(blockingOperation, 500);
-      });
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- More unnecessary scripts at the end of the body -->
-    <script>
-      // Unnecessary computation
-      function fibonacci(n) {
-        if (n <= 1) return n;
-        return fibonacci(n - 1) + fibonacci(n - 2);
-      }
-      console.log('Computing Fibonacci...');
-      fibonacci(30); // Slow recursive computation
-    </script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WebShop</title>
+		<!-- Blocking CSS -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/react-datepicker@4.8.0/dist/react-datepicker.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/react-toastify@9.1.1/dist/ReactToastify.min.css"
+		/>
+
+		<!-- Blocking JS -->
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+
+		<!-- Inline blocking styles -->
+		<style>
+			/* Large, unnecessary CSS rules */
+			body {
+				font-family: "Arial", sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f8f9fa;
+			}
+
+			/* Unnecessarily specific selectors */
+			body div.container div.row div.col-md-12 h1.page-title {
+				font-size: 2.5rem;
+				font-weight: bold;
+				color: #343a40;
+				margin-bottom: 1.5rem;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+			}
+
+			/* Unused CSS rules that add to the payload */
+			.unused-class-1 {
+				color: red;
+				background-color: blue;
+				transform: rotate(45deg);
+			}
+			.unused-class-2 {
+				animation: spin 2s linear infinite;
+				border-radius: 50%;
+			}
+			.unused-class-3 {
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+				text-decoration: underline;
+			}
+			.unused-class-4 {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.unused-class-5 {
+				position: relative;
+				top: 10px;
+				left: 20px;
+				z-index: 100;
+			}
+
+			/* Unnecessary @keyframes */
+			@keyframes spin {
+				0% {
+					transform: rotate(0deg);
+				}
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+			@keyframes fade {
+				0% {
+					opacity: 0;
+				}
+				100% {
+					opacity: 1;
+				}
+			}
+			@keyframes slide {
+				0% {
+					transform: translateX(-100%);
+				}
+				100% {
+					transform: translateX(0);
+				}
+			}
+		</style>
+
+		<!-- Inline blocking script -->
+		<script>
+			// Unnecessary JavaScript
+			console.log("Page loaded");
+
+			// Global variables (bad practice)
+			var globalCounter = 0;
+
+			// Function that blocks the main thread
+			function blockingOperation() {
+				console.log("Running blocking operation");
+				const start = Date.now();
+				while (Date.now() - start < 100) {
+					// Block for 100ms
+					globalCounter++;
+				}
+				return globalCounter;
+			}
+
+			// Run on page load
+			blockingOperation();
+
+			// Add unnecessary event listeners
+			document.addEventListener("DOMContentLoaded", function () {
+				console.log("DOM fully loaded");
+				blockingOperation();
+			});
+
+			window.addEventListener("load", function () {
+				console.log("Window loaded");
+				setTimeout(blockingOperation, 500);
+			});
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+
+		<!-- More unnecessary scripts at the end of the body -->
+		<script>
+			// Unnecessary computation
+			function fibonacci(n) {
+				if (n <= 1) return n;
+				return fibonacci(n - 1) + fibonacci(n - 2);
+			}
+			console.log("Computing Fibonacci...");
+			fibonacci(30); // Slow recursive computation
+		</script>
+	</body>
 </html>

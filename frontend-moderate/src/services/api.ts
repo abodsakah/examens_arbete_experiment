@@ -3,7 +3,7 @@ import { Order } from "../store";
 
 // Inefficiently configured API client
 const api = axios.create({
-	baseURL: "http://localhost:3000/api/v1",
+	baseURL: "http://157.180.66.56:3000/api/v1",
 	timeout: 30000, // Unnecessarily long timeout
 	headers: {
 		"Content-Type": "application/json",
@@ -74,7 +74,15 @@ export const fetchDetailedProductReport = async (productId: number) => {
 
 // Create order with no validation
 export const createOrder = async (orderData: Order) => {
-	const response = await api.post("/orders", orderData);
+	const response = await api.post("/orders", {
+		orderData: {
+			customer_name: orderData.customer_name,
+			customer_email: orderData.customer_email,
+			customer_address: orderData.customer_address,
+			total_amount: orderData.total_amount
+		},
+		items: orderData.items
+	});
 	return response.data.data;
 };
 
